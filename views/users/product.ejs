@@ -484,6 +484,41 @@ function addtocart(proId) {
 
 		
 	</script>
+	<script>
+		function addToWishList(proId) {
+			event.preventDefault();
+		$.ajax({
+		  url: '/add-to-wishlist',
+		  method: 'POST',
+		  data: {
+			proId: proId
+		  },
+		  success: (response) => {
+			if (response) {
+			  // Product added to Wishlist successfully
+			  Swal.fire({
+				position: 'centre',
+				icon: 'success',
+				title: 'Product added to wish list',
+				showConfirmButton: false,
+				timer: 1500
+				})
+			  
+	
+			} else {
+			  // Error adding product to Wishlist
+			  Swal.fire({
+				icon: 'error',
+				title: 'Product already exist in Wishlist',
+				timer: 2000
+			  });
+	
+			}
+		  }
+		})
+	  }
+	
+	</script>
 
 	<!-- Add jQuery library -->
 <script>

@@ -249,6 +249,7 @@ const editInfo = async (req, res) => {
   };
 
   
+  
 
 
 
@@ -262,6 +263,7 @@ const editInfo = async (req, res) => {
     checkOutAddress,
     profileDetails,
     profileOrderList,
-    profileAdress
+    profileAdress,
+  
     
   }
