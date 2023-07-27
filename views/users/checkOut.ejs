@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="CodePixar">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Karma Shop</title>
+
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" href="../user-assets/css/popup.css">
+    <link rel="stylesheet" href="css/linearicons.css">
+   
+
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+    
+
+
+<style>
+    body.no-scroll {
+        overflow-y: hidden;
+    }
+
+
+    #btn {
+
+        min-width: 160px;
+        /* padding: 1px 25px; */
+        transition: all 300ms ease;
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 1px;
+        background-color: #4e8f95;
+        border: 0;
+        cursor: pointer;
+    }
+
+    #btn:hover {
+        background-color: #4783cc;
+    }
+
+    .popup-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(2, 2, 2, 0.685);
+        z-index: 9998;
+        opacity: 0;
+        pointer-events: none;
+        padding: 10px 20px;
+        transition: opacity 0.3s ease-in-out;
+        text-align: center;
+    }
+
+    .popup-wrapper.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .popup {
+        padding: 20px 25px;
+        max-width: 500px;
+        width: 100%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #b1bee3;
+        border-radius: 15px;
+    }
+
+    .popup-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .close-button {
+        position: absolute;
+        margin-right: 10px;
+        top: -30;
+        right: 0;
+        background: none;
+        border: none;
+        padding: 0;
+        border: 0;
+        width: 25px;
+        height: 45px;
+        outline: none;
+        cursor: pointer;
+        display: inline-block;
+        transition: transform 0.3s, opacity 0.3s;
+        -webkit-transition: transform 0.3s, opacity 0.3s;
+        -moz-transition: transform 0.3s, opacity 0.3s;
+        -ms-transition: transform 0.3s, opacity 0.3s;
+        -o-transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .close-button:before,
+    .close-button:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 1.5px;
+        transform: translateY(-50%);
+    }
+
+    .close-button:before {
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .close-button:after {
+        transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .close-button:hover {
+        transform: scale(1.1);
+    }
+
+    .close-button:active {
+        opacity: 0.8;
+        transform: scale(0.9);
+    }
+
+    .popup-form__input {
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        padding: 12px 20px;
+        width: 90%;
+    }
+</style>
+
+<style>
+    /* popup------------------------------------------------- */
+    .overlay-pop-up{
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.5;
+      z-index: 99;
+  }
+  .pop-up-button{
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 35px;
+      outline: none;
+      border: none;
+      background-color: #e47312;
+      transition: all 300ms ease;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 100;
+      text-transform: uppercase;
+      cursor: pointer;
+  }
+  .pop-up-list{
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 500px;
+      height: 100%;
+      z-index: 10000;
+      padding: 95px 50px 35px 70px;
+      background-color: #fff;
+      color: black;
+      transition: all 0.2s ease-out;
+      display: none;
+  }
+
+  .list-wrapper{
+      margin-top: 80px;
+  }
+ 
+  /* popup ends------------------------------ */
+
+  .info-wrapper:hover{
+      background-color: #e98a38;
+      color: white;
+  }
+
+  .button{
+      margin-top: 0x;
+      min-width: 160px;
+      padding: 15px 25px;
+      transition: all 300ms ease;
+      color: #fff;
+      font-weight: 500;
+      text-align:center;
+      letter-spacing: 1px;
+      background-color: #e47312;
+      border: 0;
+      cursor: pointer;
+  }
+  .button:hover{
+      background-color: #e98a38;
+  }
+  .change{
+
+      padding: 10px 20px;
+      transition: all 300ms ease;
+      color: #fff;
+      font-weight: 500;
+      text-align:center;
+      letter-spacing: 1px;
+      background-color: #e47312;
+      border: 0;
+      cursor: pointer;
+  }
+  .change:hover{
+      background-color: #e98a38;
+  }
+
+
+.top-title-section{
+box-sizing: border-box;
+width: 100%;
+height: 60px;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.top-title.special{
+z-index: 2;
+position: relative;
+color: black;
+margin: 0;
+font-size: 40px;
+line-height: 50px;
+letter-spacing: 1px;
+font-weight: 600;
+}
+</style>
+
+<style>
+.btn-reply {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+    <!-- Start Header Area -->
+    <%- include('../layouts/header.ejs') %>	
+	<!-- End Header Area -->
+
+
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap" style="margin-top: 50px;">
+        <div class="container">
+        
+           
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Billing Details</h3>
+                        <%if(address[0]){%>
+                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="first" name="name" value="<%=address[0].name%>">
+                                </span>
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="number" name="number" value="<%=address[0].mobileNumber%>">
+                            </span>
+                            </div>
+                         
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="address" value="<%=address[0].address%>" >
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="locality" value="<%=address[0].locality%>">
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="city" value="<%=address[0].city%>">
+                            </div>
+                           
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="zip" name="zip" value="<%=address[0].pincode%>">
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="state" value="<%=address[0].state%>">
+                            </div>
+                            <%}else{%>
+                                <div class="col-md-12 form-group p_star">
+                                    <h1>Please Add An Address</h1>
+                                </div>
+    
+                                <%}%>
+
+
+                          
+                           
+                        </form>
+
+                       <div class="banner-desc" style="display: flex; align-items: center; ">
+                    <section class="intro">
+                      <a class="btn-reply" id="btn" style="flex: 1;">Add new address</a>
+                    </section>
+                  
+                    <section class="intro">
+                      <a class="button" id="btn" style="flex: 1; border-radius: 20px;margin-left:10px">CHANGE ADDRESS</a>
+                    </section>
+                  </div>
+                        
+                    </div>
+                    <div class="col-lg-4">
+                    <form id="checkOut-form">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% cart.forEach(function(cart, index) { %>
+                                    <tr>
+                                      <td><%= cart.carted.name %></td>
+                                      <td>x <%= cart.quantity %></td>
+                                      <td>₹<%= cart.total %></td>
+                                    </tr>
+                                  <% }); %>
+                                </tbody>
+                              </table>
+                              
+                            <ul class="list list_2">
+
+                                <li><a href="#">Subtotal <span id="subTotal">₹<%=total.cartTotal%></span></a></li>
+                                <li><a href="#">Discount  <span id="couponOffer"></span></a></li>
+
+                                <li><a href="#">Total <span id="total">₹<%=total.cartTotal%></span></a></li>
+
+                                <input type="hidden" name="total" value="<%=total.cartTotal%>" id="totalVal" >
+                                <%if(address[0]){%>
+                                <input type="hidden" name="address" value="<%=address[0]._id%>" >
+                                <%}else{%>
+                                    <%}%>
+
+                            </ul>                 
+                            <div class="coupon_area">
+                                <input type="text" placeholder="Enter coupon code" name="couponCode" id="couponCode">
+                                <a class="primary-btn" href="#" style="width: 100px; height: 40px; margin-top: 10px;" onclick="applyCoupon('<%=total.cartTotal%>')" >Apply</a>
+                        </div>
+                        <span id="couponErr"></span>
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option7" name="paymentOption" value="wallet" >
+                                    <label for="f-option7">Wallet</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>Pay  amount from your wallet</p>
+                            </div>
+
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="paymentOption" value="cod" checked="true">
+                                    <label for="f-option5">Cash On Delivery</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>Pay the amount at your doorstep</p>
+                            </div>
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                <input type="radio" id="f-option6" name="paymentOption" value="razorpay" checked>
+                                    <label for="f-option6">Razorpay</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>Pay through Razorpay</p>
+                            </div>
+                            <%if(address[0]){%>
+                            <button class="primary-btn" onclick="proceedToPayment()">Place Order</button>
+                            <%}else{%>
+                                <button class="primary-btn " disabled onclick="proceedToPayment()">Place Order</button>
+                                <%}%>
+
+
+
+
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Checkout Area =================
+
+    <!-- start footer Area -->
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>About Us</h6>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore dolore
+                            magna aliqua.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        <div class="" id="mc_embed_signup">
+
+                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="form-inline">
+
+                                <div class="d-flex flex-row">
+
+                                    <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Enter Email '" required="" type="email">
+
+
+                                    <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
+                                            aria-hidden="true"></i></button>
+                                    <div style="position: absolute; left: -5000px;">
+                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
+                                            type="text">
+                                    </div>
+
+                                    <!-- <div class="col-lg-4 col-md-4">
+													<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+												</div>  -->
+                                </div>
+                                <div class="info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-md-6 col-sm-6">
+                    <div class="single-footer-widget mail-chimp">
+                        <h6 class="mb-20">Instragram Feed</h6>
+                        <ul class="instafeed d-flex flex-wrap">
+                            <li><img src="img/i1.jpg" alt=""></li>
+                            <li><img src="img/i2.jpg" alt=""></li>
+                            <li><img src="img/i3.jpg" alt=""></li>
+                            <li><img src="img/i4.jpg" alt=""></li>
+                            <li><img src="img/i5.jpg" alt=""></li>
+                            <li><img src="img/i6.jpg" alt=""></li>
+                            <li><img src="img/i7.jpg" alt=""></li>
+                            <li><img src="img/i8.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Follow Us</h6>
+                        <p>Let us be social</p>
+                        <div class="footer-social d-flex align-items-center">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+                <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+            </div>
+        </div>
+
+
+
+
+        <div class="pop-up-list">
+            <button class="pop-up-button"><i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+                <div class="top-title-section">
+                <p class="top-title special">Addresses</p>
+                </div>
+                <br>
+
+                <div class="comment-list grid-view" style="height: 500px; overflow-y:scroll;">
+                        <form id="addressForm" action="/changeDefaultAddress" method="POST">
+                        <% address.forEach(function(address,index) {%>
+                            <label for="address<%=index%>">Address</label>
+                        <input type="radio" id="addressRadio{<%=index%>" name="addressRadio" value="<%=address._id%>" onchange="this.form.submit()">
+                        <br>
+                        <div class="single-comment grid-item">
+                            <div class="user justify-content-between d-flex">
+                            <div class="desc">
+                                <h5>Name: <%=address.name%></h5>
+                                <h5>Number: <%=address.mobileNumber%></h5>
+                                <h5>Address: <%=address.address%></h5>
+                                <h5>City: <%=address.city%></h5>
+                                <h5>Street: <%=address.locality%></h5>
+                                <h5>Pin: <%=address.pincode%></h5>
+                            </div>
+                            </div>
+                        </div>
+                        <br>
+                        <% }) %>
+                    </form>
+                </div>
+        </div>
+        <div class="overlay-pop-up"></div>
+
+        <div class="popup-wrapper">
+            <div class="popup">
+                <button class="close-button"></button>
+                <form class="popup-form" action="/checkOutAddress" method="POST">
+                    <h2 class="popup-form__title">Add Address</h2>
+                    <input type="text" class="popup-form__input" placeholder="Name" name="name" required>
+                    <input type="number" class="popup-form__input" placeholder="Mobile Number" name="mno" required>
+                    <textarea class="popup-form__input" placeholder="House Address" name="address" required></textarea>
+                    <input type="text" class="popup-form__input" placeholder="Street" name="locality" required>
+                    <input type="text" class="popup-form__input" placeholder="City" name="city" required>
+                    <input type="number" class="popup-form__input" placeholder="PostalCode/PIN" name="pincode" required>
+                    <input type="text" class="popup-form__input" placeholder="State" name="state" required>
+                    <button type="submit" id="btn" class="popup-form__submit">ADD</button>
+                </form>
+            </div>
+        </div>
+
+
+
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="../user-assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="../user-assets/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="../user-assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../user-assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="../user-assets/js/jquery.nice-select.min.js"></script>
+    <script src="../user-assets/js/jquery.sticky.js"></script>
+    <script src="../user-assets/js/nouislider.min.js"></script>
+    <script src="../user-assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../user-assets/js/owl.carousel.min.js"></script>
+    <!--gmaps Js-->
+    <script src="../user-assets/https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="../user-assets/js/gmaps.min.js"></script>
+    <script src="../user-assets/js/main.js"></script>
+
+
+
+    <script>
+
+        var popup = document.getElementsByClassName("pop-up-list")[0];
+        var overlay = document.getElementsByClassName("overlay-pop-up")[0];
+
+        var button = document.getElementsByClassName("button")[0];
+
+        var close = document.getElementsByClassName('pop-up-button')[0];
+
+        button.onclick=function(){
+        popup.style.display = "block";
+        overlay.style.display = "block";
+        }
+
+        overlay.onclick=function(){
+        popup.style.display = "none";
+        overlay.style.display = "none"; 
+        }
+        close.onclick=function(){
+        popup.style.display = "none";
+        overlay.style.display = "none"; 
+        
+        }
+    </script>
+<script>
+    function proceedToPayment() {
+      event.preventDefault()
+$.ajax({
+  url: "/postCheckOut",
+  method: 'POST',
+  data: $('#checkOut-form').serialize(),
+  success: (response) => {
+    console.log(response,'+++++=========== ');
+    if (response.error) {
+      console.log(response,'error--------------------------------');
+
+      console.log(response.error.message,'---------------');
+      Swal.fire({
+        title: 'Error!',
+        text: response.error,
+        icon: 'error',
+        timer: 5000
+      })
+    } else if (response.codStatus == true) {
+      console.log(response,'status');
+      Swal.fire({
+        title: 'Order Placed!',
+        text: 'Your order has been placed successfully.',
+        icon: 'success',
+        timer: 5000
+      }).then(() => {
+        location.href = '/'
+      })
+    }else if (response.orderStatus== true) {
+      Swal.fire({
+        title: 'Order Placed!',
+        text: 'Your order has been placed successfully.',
+        icon: 'success',
+        timer: 5000
+      }).then(() => {
+        location.href = '/'
+      })
+    }else if (response.status== "OrderFailed") {
+        Swal.fire({
+          title: 'Order Failed!',
+          text: 'Your Product is Out of Stock .Please Check after some time',
+          icon: 'error',
+          timer: 5000
+        }).then(() => {
+          location.href = '/'
+        })
+      } else {
+      try {
+        razorpay(response)
+        console.log(response, '1');
+        console.log(response.amount, '2');
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: error.message,
+          icon: 'error',
+          timer: 5000
+        })
+      }
+    } 
+  }
+})
+}
+</script>
+<script>
+    // Get references to the elements
+    let popupWrappers = document.querySelectorAll(".popup-wrapper");
+    let popupForms = document.querySelectorAll(".popup-form");
+    let popupBtns = document.querySelectorAll(".btn-reply");
+    let popupCloses = document.querySelectorAll(".close-button");
+
+    // Add event listeners to each popup button
+    popupBtns.forEach((btn, index) => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            showPopup(index);
+        });
+    });
+
+    // Add event listeners to each popup close button
+    popupCloses.forEach((closeBtn, index) => {
+        closeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            removePopup(index);
+        });
+    });
+
+    // Add event listeners to each popup form
+    popupForms.forEach((form) => {
+        form.addEventListener("submit", () => {
+            // Implement your form submission logic here
+            removePopup();
+        });
+    });
+
+    // Add event listeners to each popup wrapper
+    popupWrappers.forEach((wrapper, index) => {
+        wrapper.addEventListener("click", (e) => {
+            let target = e.target;
+            if (target.classList.contains("popup-wrapper")) {
+                removePopup(index);
+            } else {
+                return;
+            }
+        });
+    });
+
+    function showPopup(index) {
+        popupWrappers[index].classList.add("active");
+        bodyScroll();
+    }
+
+    function removePopup(index) {
+        popupWrappers[index].classList.remove("active");
+        bodyScroll();
+    }
+
+    function bodyScroll() {
+        document.body.classList.toggle("no-scroll");
+   }
+
+
+   function applyCoupon(total) {
+    let couponCode = document.getElementById('couponCode').value
+    $.ajax({
+      url: '/couponVerify/' + couponCode,
+      method: 'GET',
+      success: (response) => {
+        if (response.status == true) {
+
+          $.ajax({
+            url: '/applyCoupon/' + couponCode,
+            method: 'GET',
+            success: (response) => {
+              console.log(response,'---');
+              if (response.status == true) {
+                document.getElementById('couponErr').style.color = '#19ff11'
+                document.getElementById('couponErr').innerText = "Coupon Applied SuccessFully"
+                // document.getElementById('subTotal').innerText = total - response.discountAmount
+                document.getElementById('total').innerText = '₹' + Math.floor(total - response.discountAmount)
+                document.getElementById('totalVal').value = Math.floor(total - response.discountAmount)
+                document.getElementById('couponOffer').innerText = response.discount + '%'
+                document.getElementById('codes').value = response.couponCode
+              } else {
+                document.getElementById('couponErr').style.color = "#ff0707" 
+                document.getElementById('couponErr').innerText = response.message
+              }
+
+            }
+          })
+        } else {
+          document.getElementById('couponErr').style.color = "#ff0707"
+          document.getElementById('couponErr').innerText = response.message
+
+          setTimeout(function() {
+            location.reload()
+          }, 5000)
+        }
+
+      }
+    })
+  }
+
+
+   
+
+</script>
+<script>
+    
+    function razorpay(order) {
+      console.log(order, 'order');
+      console.log(order.amount, 'amount');
+      var options = {
+        "key": "rzp_test_7tBpBFWzkTOysV", // Enter the Key ID generated from the Dashboard
+        "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "URBANhues",
+        "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function(response) {
+          console.log(response,'++++++++++',order);
+          verifypayment(response, order)
+        },
+  
+        "prefill": {
+          "name": "Gaurav Kumar",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9000090000"
+        },
+        "notes": {
+          "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+          "color": "#3399cc"
+        }
+      }
+      var rzp1 = new Razorpay(options)
+      rzp1.open();
+    }
+  
+    function verifypayment(payment, order,paymentId) {
+      console.log(payment, order, paymentId,'---------------');
+      $.ajax({
+        url: 'verifyPayment',
+        method: 'post',
+        data: {
+          payment,
+          order,
+          paymentId
+        },
+         
+        success: (response) => {
+          if (response.status) {
+            Swal.fire({
+              title: 'Order Placed!',
+              text: 'Your order has been placed successfully.',
+              icon: 'success',
+              timer: 5000
+            }).then(() => {
+              location.href = '/'
+            })
+          } else {
+  
+          }
+  
+        }
+      })
+    }
+  
+  
+  
+  </script>
+</body>
+
+</html>
