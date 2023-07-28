@@ -57,6 +57,13 @@
                                           <input type="number" class="form-control" placeholder="₹0.00" id="price" onkeyup="priceValidation()" name="price" value="<%= productData[0].price %>">
                                           <span id="price-error" class="validation-label"></span>
                                       </div>
+                                    </div> 
+                                      <div class="row mb-4">
+                                      <label class="col-lg-3 col-form-label">stock</label>
+                                      <div class="col-lg-4">
+                                          <input type="number" class="form-control" placeholder="0" id="stock"  name="stock" value="<%=productData[0].stock%>">
+                                          <span id="price-error" class="validation-label"></span>
+                                      </div>
                                   </div>
                                   <div class="row mb-4">
                                       <label class="col-lg-3 col-form-label">Category</label>

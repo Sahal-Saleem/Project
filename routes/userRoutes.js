@@ -102,12 +102,12 @@ user_route.post('/verifyPayment',orderController.verifyPayment)
 user_route.get('/applyCoupon/:id',block.checkBlocked,userController.applyCoupon)
 user_route.get('/couponVerify/:id',block.checkBlocked,userController.verifyCoupon)
 
-// wishList
+// wishList  
 
 user_route.get("/wishList", block.checkBlocked,wishListController.getWishList);
 user_route.post('/add-to-wishlist',wishListController.addWishList)
-user_route.delete("/remove-product-wishlist",wishListController.removeProductWishlist)
-
+user_route.delete("/remove-product-wishlist",wishListController.removeProductWishlist)  
+  
 // Error 
 user_route.get('/error-403',userController.error403)
 user_route.get('/error-404',userController.error404)

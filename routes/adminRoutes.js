@@ -10,7 +10,7 @@ const validate = require('../middlewares/adminAuth')
 const bannerController = require('../controllers/bannerController')
 // const multer = require("../multer/multer");
 const multer = require("../multer/multer");
-const multers = require('multer')
+const multers = require('multer') 
 const path = require('path');
 
 

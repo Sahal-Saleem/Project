@@ -12,6 +12,7 @@ const createProduct = (data,images) => {
       description:data.description,
       images:images,
       category:data.category,
+      stock:data.stock,
       price:data.price
     }); 
 
@@ -49,7 +50,7 @@ const reListProduct = (query) => {
   const unListProduct = (query) => {
     return new Promise((resolve, reject) => {
       const id = query;
-      Product.updateOne({ _id: id }, { isProductListed: false })
+      Product.updateOne({ _id: id }, { is_listed: false })
         .then(() => {
           resolve();
         })
@@ -71,7 +72,9 @@ const reListProduct = (query) => {
               description: data.description,
               category: data.category,
               images: images,
+              stock:data.stock,
               price: data.price
+
             }
           }
         );

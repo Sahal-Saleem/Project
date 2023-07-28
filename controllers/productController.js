@@ -22,7 +22,7 @@ const loadProducts = async (req, res) => {
 
 
 const createProduct = async (req, res) => {
-    const { name, description, category, price } = req.body;
+    const { name, description, category, price,stock } = req.body;
     const filesArray = Object.values(req.files).flat();
     const images = filesArray.map((file) => file.filename);
     let categories = await Category.find({});
@@ -32,10 +32,11 @@ const createProduct = async (req, res) => {
       images,
       category,
       price,
+      stock
     });
   
     newProduct
-      .save()
+      .save() 
       .then(() => {
       res.render("addProduct", { message:"product added succesfully",category: categories });
         
@@ -114,6 +115,7 @@ const Products = async(req,res)=>{
           const description = req.body.description;
           const price = req.body.price;
           const category = req.body.category;
+          const stock = req.body.stock
           const status = req.body.status === "listed";
           const filesArray = Object.values(req.files).flat();
           const images = filesArray.map((file) => file.filename);
@@ -129,7 +131,8 @@ const Products = async(req,res)=>{
               $set: {
                 name: name,
                 description: description,
-                price: price, 
+                price: price,
+                stock: stock, 
                 category: category,
                 is_listed: status,
                 images: updatedImages

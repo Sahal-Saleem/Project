@@ -22,6 +22,40 @@
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
+   <style>
+    .tooltip-ellipsis {
+  max-width: 200px; /* Adjust the maximum width as needed */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+  cursor: help;
+}
+
+.tooltip-ellipsis::after {
+  content: attr(title);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.tooltip-ellipsis:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+</style>
+
+
 </head>
 
 <body>
@@ -181,7 +215,8 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Price</th>
-                                            <th>Description</th>
+                                            <th>Stock</th>
+                                            <th>Description</th>  
                                             <th>Status</th>
                                             <th> Action </th>
                                         </tr>
@@ -201,6 +236,7 @@
                                             </td>
                                             <td width="20%"><i class="fa fa-inr" aria-hidden="true"></i>
                                                 <%= item.price %></td>
+                                                <td><%= item.stock %></td>
                                             <td title="<%= item.description %>" class="tooltip-ellipsis"><%= item.description %></td>
                                             <%if(item.is_listed == true){%>
                                               <td><span class="badge rounded-pill alert-success">Active</span></td>
