@@ -431,8 +431,10 @@ const error404 = async(req,res)=>{
       await review.save();
       // Redirect with the product ID as a query parameter
       res.redirect('/productPage?id=' + req.body.proId);
-    } catch (error) {
-      console.log(error);
+    }catch (error) {
+      console.log(error.message);
+      res.redirect('/error-500')
+
     }
   };
 
