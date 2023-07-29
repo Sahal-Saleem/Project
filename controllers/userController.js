@@ -440,12 +440,8 @@ const error404 = async(req,res)=>{
       console.log(error);
     }
   };
-  
-
-
 
   
-
 
 
 
@@ -470,6 +466,7 @@ module.exports = {
     error404,
     error403,
     error500,
-    postReview
+    postReview,
+   
     
 }

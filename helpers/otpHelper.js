@@ -28,4 +28,7 @@ const sendOtp = async (mobileNumber, otp) => {
   }
 };
 
-module.exports = { generateOtp, sendOtp };
+
+
+
+module.exports = { generateOtp, sendOtp }; 

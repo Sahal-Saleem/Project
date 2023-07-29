@@ -288,6 +288,51 @@ const orderListAdmin = async (req, res) => {
             }
           }
         ])
+
+        const categorySales = await Order.aggregate([
+          { $unwind: "$orders" },
+          { $unwind: "$orders.productDetails" },
+          {
+            $match: {
+              "orders.orderStatus": "Delivered",
+            },
+          },
+          {
+            $project: {
+              CategoryId: "$orders.productDetails.category",
+              totalPrice: {
+                $multiply: [
+                  { $toDouble: "$orders.productDetails.productPrice" },
+                  { $toDouble: "$orders.productDetails.quantity" },
+                ],
+              },
+            },
+          },
+          {
+            $group: {
+              _id: "$CategoryId",
+              PriceSum: { $sum: "$totalPrice" },
+            },
+          },
+          {
+            $lookup: {
+              from: "categories",
+              localField: "_id",
+              foreignField: "_id",
+              as: "categoryDetails",
+            },
+          },
+          {
+            $unwind: "$categoryDetails",
+          },
+          {
+            $project: {
+              categoryName: "$categoryDetails.name",
+              PriceSum: 1,
+              _id: 0,
+            },
+          },
+        ]);
     
     
     
@@ -301,9 +346,9 @@ const orderListAdmin = async (req, res) => {
           }},
           {$limit:10}
         ]) 
-          res.render('dashboard',{orders,productsCount,categoryCount,onlinePay,salesData,order:latestorders,salesCount})
+          res.render('dashboard',{orders,productsCount,categorySales,categoryCount,onlinePay,salesData,order:latestorders,salesCount})
       } catch (error) {
-          console.log(error)
+          console.log(error) 
       }
     }
 

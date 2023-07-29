@@ -89,17 +89,17 @@ admin_route.post('/addCoupon',validate.requireAuth,adminController.addCoupon)
 admin_route.delete('/removeCoupon',validate.requireAuth,adminController.removeCoupon)
 
 // banner 
-admin_route.get('/addBanner',bannerController.addBannerGet)
+admin_route.get('/addBanner',validate.requireAuth,bannerController.addBannerGet)
 admin_route.post('/addBanner',multer.addBannerupload,bannerController.addBannerPost)
-admin_route.get('/bannerList',bannerController.bannerList)
-admin_route.get('/deleteBanner',bannerController.deleteBanner)
+admin_route.get('/bannerList',validate.requireAuth,bannerController.bannerList)
+admin_route.get('/deleteBanner',validate.requireAuth,bannerController.deleteBanner)
 
 // sales report
 admin_route.get('/salesReport',validate.requireAuth,adminController.getSalesReport)
-admin_route.post('/salesReport',adminController.postSalesReport)
+admin_route.post('/salesReport',validate.requireAuth,adminController.postSalesReport)
 
 // dashboard
-admin_route.get('/dashboard',adminController.loadDashboard)
+admin_route.get('/dashboard',validate.requireAuth,adminController.loadDashboard)
 
 
 

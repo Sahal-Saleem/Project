@@ -14,7 +14,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/igs/theme/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/igs/theme/favicon.png">
     <!-- Template CSS -->
     <link href="../admin-assets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
@@ -23,74 +23,14 @@
     <div class="screen-overlay"></div>
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
-            <a href="index.html" class="brand-wrap">
+            <a href="/admin" class="brand-wrap">
                 <img src="../admin-assets/imgs/theme/logo.png" class="logo" alt="">
             </a>
             <div>
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
             </div>
         </div>
-        <nav>
-            <ul class="menu-aside">
-                <li class="menu-item">
-                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="menu-item has-submenu active">
-                    <a class="menu-link" > <i class="icon material-icons md-person"></i>
-                        <span class="text" >User</span>
-                    </a>
-                    <div class="submenu">
-                        
-                        <a href="/admin/users" class="active">User List</a>
-                    </div>
-                </li>
-                
-                <li class="menu-item has-submenu ">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Products</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/admin/product" >Product List</a>
-                        <a href="page-products-grid-2.html">Product grid 2</a>
-                        <a href="/admin/category" class="">Categories</a>
-                    </div>
-                </li> 
-                <li class="menu-item has-submenu ">
-                    <a class="menu-link" href="userlist.html"> <i class="icon material-icons md-person"></i>
-                        <span class="text" >Orders</span>
-                    </a>
-                    <div class="submenu">
-                        
-                        <a href="/admin/orderList" class="active">Order list</a>
-                    </div>
-                </li> 
-                <li class="menu-item has-submenu ">
-                    <a class="menu-link" href="userlist.html"> <i class="icon material-icons md-person"></i>
-                        <span class="text" >Coupons</span>
-                    </a>
-                    <div class="submenu">
-                        
-                        <a href="/admin/getCoupon" class="active">Add Cooupon</a>
-                        <a href="/admin/couponList" class="active">Coupon List</a>
-                    </div>
-                </li>
-                <li class="menu-item has-submenu ">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Sales Report</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="/admin/salesReport" >Report</a>
-                        
-                    </div>
-                </li>
-            </ul>
-            <hr>
-            
-            <br>
-            <br>
-        </nav>
+        <%- include('../layouts/adminHeader.ejs') %>
     </aside>
     <main class="main-wrap">
         <header class="main-header navbar">

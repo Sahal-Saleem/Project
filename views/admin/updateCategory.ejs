@@ -14,7 +14,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../admin-assets/imgs/theme/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="../admin-assets/imgs/theme/favicon.png">
     <!-- Template CSS -->
     <link href="../admin-assets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
@@ -30,48 +30,7 @@
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
             </div>
         </div>
-        <nav>
-            <ul class="menu-aside">
-                <li class="menu-item">
-                    <a class="menu-link" href="index.html"> <i class="icon material-icons md-home"></i>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" > <i class="icon material-icons md-person"></i>
-                        <span class="text" >User</span>
-                    </a>
-                    <div class="submenu">
-                        
-                        <a href="/admin/userList" class="active">User List</a>
-                    </div>
-                </li>
-                
-                <li class="menu-item has-submenu active">
-                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
-                        <span class="text">Products</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="page-products-list.html">Product List</a>
-                        <a href="page-products-grid.html">Product grid</a>
-                        <a href="page-products-grid-2.html">Product grid 2</a>
-                        <a href="/admin/category" class="active">Categories</a>
-                    </div>
-                </li>
-                <li class="menu-item has-submenu ">
-                    <a class="menu-link" href="userlist.html"> <i class="icon material-icons md-person"></i>
-                        <span class="text" >Coupons</span>
-                    </a>
-                    <div class="submenu">
-                        
-                        <a href="" class="active">Coupon List</a>
-                    </div>
-                </li>
-                
-            <hr>
-            <br>
-            <br>
-        </nav>
+        <%- include('../layouts/adminHeader.ejs') %>
     </aside>
     <main class="main-wrap">
         <header class="main-header navbar">

@@ -67,14 +67,14 @@ user_route.get('/shop',block.checkBlocked,userController.displayProduct)
 
 // profile
 user_route.get('/profile',block.checkBlocked,validate.requireAuth,profileController.profile)
-user_route.post('/submitAddress',profileController.submitAddress)
-user_route.post('/updateAddress',profileController.editAddress)
-user_route.get('/deleteAddress',block.checkBlocked,profileController.deleteAddress)
-user_route.post('/editInfo',profileController.editInfo)
-user_route.post('/editPassword',profileController.editPassword)
-user_route.get('/profileDetails',profileController.profileDetails)
-user_route.get('/profileOrderList',profileController.profileOrderList)
-user_route.get('/profileAddress',profileController.profileAdress) 
+user_route.post('/submitAddress',validate.requireAuth,profileController.submitAddress)
+user_route.post('/updateAddress',validate.requireAuth,profileController.editAddress)
+user_route.get('/deleteAddress',validate.requireAuth,block.checkBlocked,profileController.deleteAddress)
+user_route.post('/editInfo',validate.requireAuth,profileController.editInfo)
+user_route.post('/editPassword',validate.requireAuth,profileController.editPassword)
+user_route.get('/profileDetails',validate.requireAuth,profileController.profileDetails)
+user_route.get('/profileOrderList',validate.requireAuth,profileController.profileOrderList)
+user_route.get('/profileAddress',validate.requireAuth,profileController.profileAdress) 
 
 
 // product details
@@ -84,8 +84,8 @@ user_route.get('/categoryShop',block.checkBlocked,userController.categoryPage)
 // cart
 user_route.post('/addToCart/:id',validate.requireAuth,cartController.addToCart)
 user_route.get('/cart',block.checkBlocked,validate.requireAuth,cartController.loadCart)
-user_route.put('/updateQuantity',cartController.updateQuantity)
-user_route.delete('/delete',cartController.deleteProduct)
+user_route.put('/updateQuantity',validate.requireAuth,cartController.updateQuantity)
+user_route.delete('/delete',validate.requireAuth,cartController.deleteProduct)
  
 // order 
 user_route.get('/checkOut',block.checkBlocked,validate.requireAuth,orderController.checkOut)
@@ -114,10 +114,11 @@ user_route.get('/error-404',userController.error404)
 user_route.get('/error-500',userController.error500)
 
 // invoice
-user_route.get('/invoice',orderController.downloadInvoice) 
+user_route.get('/invoice',validate.requireAuth,orderController.downloadInvoice) 
 
 // review
-user_route.post('/postReview',userController.postReview)
+user_route.post('/postReview',userController.postReview)  
+
 
  
 

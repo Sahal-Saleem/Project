@@ -123,7 +123,10 @@
 
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
+    <!-- Include the SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
 
 
 <%-include('../layouts/profileHeader.ejs')%>
@@ -183,11 +186,14 @@
                           <div class="wallet-top">
                             <div class="card">
                               <h1>MY WALLET</h1>
+
                               <h2>₹<%= user.wallet %>
                               </h2>
+                              
                               <span>
                                 <%= user.email %>
                               </span>
+                              
                             </div>
                           </div>
                         </div>
@@ -202,7 +208,6 @@
               </div>
             </div>
           </section>
-
         </div>
       </div>
     </div>
@@ -261,7 +266,34 @@
       </div>
     </form>
   </div>
-  
+
+
+  <div class="modal fade" id="rechargeModal" tabindex="-1" role="dialog" aria-labelledby="rechargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="rechargeModalLabel">Recharge Wallet</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="rechargeModalForm">
+            <div class="form-group">
+                <label for="rechargeAmount">Recharge Amount</label>
+                <input type="text" class="form-control" id="rechargeAmount" name="rechargeAmount" placeholder="Enter amount"
+                required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-warning" style="color: #fff;"
+                id="rechargeModalSubmit">Recharge</button>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
   
   
   
@@ -343,6 +375,7 @@
   <!-- Main Js File -->
   <script src="js/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
 
 
 
@@ -451,6 +484,7 @@ function changePassword() {
 }
 
 </script>
+
 
 
 
