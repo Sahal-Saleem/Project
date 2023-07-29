@@ -55,7 +55,7 @@ const loadCart = async (req, res) => {
       console.log(error); 
       res.send({ success: false, error: error.message });
     }
-  }; 
+  };  
 
   const updateQuantity = (req, res) => {
     const userId = res.locals.user._id;
